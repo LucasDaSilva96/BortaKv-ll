@@ -10,9 +10,7 @@ export default function CartModal() {
       }`}
     >
       <div className='w-full h-full bg-black/30' onClick={setIsCartOpen} />
-      <nav
-        className={`bg-slate-100 w-[370px] h-full pt-16 px-2 pb-2 shadow-lg`}
-      >
+      <nav className={`bg-slate-50 w-[370px] h-full pt-20 px-2 pb-2 shadow-lg`}>
         CartModal
       </nav>
     </div>

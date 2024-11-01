@@ -85,3 +85,8 @@ html {
   top: 0;
   left: 0;
 }
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--foreground) !important;
+}
