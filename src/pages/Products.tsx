@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import TagsBox from '@/components/TagsBox';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import ImageLoader from '@/components/ImageLoader';
+import AddToCartBtn from '@/components/AddToCartBtn';
 
 export default function Products() {
   const { data: products, isLoading } = useQuery({
@@ -19,35 +20,37 @@ export default function Products() {
         <p className='animate-bounce'>Loading...</p>
       ) : (
         <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-          {products?.map((product) => (
-            <article
-              key={product.id}
-              className='bg-white shadow-md rounded-md p-6 flex flex-col gap-4 transition-all will-change-auto lg:hover:shadow-lg min-w-[250px] relative'
-            >
-              <LazyLoadImage
-                src={product.images.thumbnail}
-                alt={product.name}
-                effect='blur'
-                placeholder={<ImageLoader />}
-                className='w-full h-auto rounded-md'
-              />
+          {products &&
+            products.map((product) => (
+              <article
+                key={product.id}
+                className='bg-white shadow-md rounded-md p-6 flex flex-col gap-4 transition-all will-change-auto lg:hover:shadow-lg min-w-[250px] relative'
+              >
+                <LazyLoadImage
+                  src={product.images.thumbnail}
+                  alt={product.name}
+                  effect='blur'
+                  placeholder={<ImageLoader />}
+                  className='w-full h-auto rounded-md'
+                />
 
-              <h2 className='text-xl font-semibold'>{product.name}</h2>
-              <p className='text-lg font-semibold'>{product.price} kr</p>
-              <div className='w-full flex items-center justify-between py-2'>
-                <button className='bg-primary text-white px-4 py-2 rounded-md'>
-                  Add to cart
-                </button>
-                <Link
-                  to={`/product/${product.id}`}
-                  className='text-primary underline'
-                >
-                  View details
-                </Link>
-              </div>
-              <TagsBox tags={product.tags} />
-            </article>
-          ))}
+                <h2 className='text-xl font-semibold'>{product.name}</h2>
+                <p className='text-lg font-semibold'>{product.price} kr</p>
+                <div className='w-full flex items-center justify-between py-2'>
+                  <AddToCartBtn
+                    product={product}
+                    customClassName='bg-primary text-white px-4 py-2 rounded-md'
+                  />
+                  <Link
+                    to={`/product/${product.id}`}
+                    className='text-primary underline'
+                  >
+                    View details
+                  </Link>
+                </div>
+                <TagsBox tags={product.tags} />
+              </article>
+            ))}
         </div>
       )}
     </section>

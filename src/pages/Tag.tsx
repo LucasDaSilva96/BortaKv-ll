@@ -1,3 +1,4 @@
+import AddToCartBtn from '@/components/AddToCartBtn';
 import ImageLoader from '@/components/ImageLoader';
 import TagsBox from '@/components/TagsBox';
 import { getProductsByTag } from '@/services/tags/productsByTag_get';
@@ -39,9 +40,10 @@ export default function Tag() {
               <p className='text-lg font-semibold'>{product.price} kr</p>
 
               <div className='w-full flex items-center justify-between py-2'>
-                <button className='bg-primary text-white px-4 py-2 rounded-md'>
-                  Add to cart
-                </button>
+                <AddToCartBtn
+                  product={product}
+                  customClassName='bg-primary text-white text-base px-4 py-2 rounded-md'
+                />
                 <Link
                   to={`/product/${product.id}`}
                   className='text-primary underline'

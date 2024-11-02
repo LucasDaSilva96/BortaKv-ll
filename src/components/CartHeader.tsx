@@ -1,9 +1,9 @@
+import { useCart } from '@/stores/cart';
 import { useModalsToggle } from '@/stores/modalToggle';
 import { MdOutlineShoppingBag, MdShoppingBag } from 'react-icons/md';
 
 export default function CartHeader() {
-  // TODO: Implement the cart state
-  const hasItems = false;
+  const { cart } = useCart();
 
   const { setIsCartOpen } = useModalsToggle();
 
@@ -17,7 +17,7 @@ export default function CartHeader() {
         onClick={handleToggle}
         className='text-black cursor-pointer active:text-black/50'
       >
-        {hasItems ? (
+        {cart.length ? (
           <MdShoppingBag size={28} />
         ) : (
           <MdOutlineShoppingBag size={28} />

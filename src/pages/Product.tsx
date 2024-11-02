@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import ImageLoader from '@/components/ImageLoader';
+import AddToCartBtn from '@/components/AddToCartBtn';
 
 export default function Product() {
   const params = useParams<{ id: string }>();
@@ -35,9 +36,10 @@ export default function Product() {
           <p className='text-lg font-semibold'>{data?.price} kr</p>
 
           <div className='w-full flex items-center justify-between py-2'>
-            <button className='bg-primary text-white px-4 py-2 rounded-md'>
-              Add to cart
-            </button>
+            <AddToCartBtn
+              product={data}
+              customClassName='bg-primary text-white text-base px-4 py-2 rounded-md'
+            />
           </div>
 
           <TagsBox tags={data.tags} />

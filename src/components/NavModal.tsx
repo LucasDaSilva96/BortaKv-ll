@@ -24,7 +24,7 @@ export default function NavModal() {
     >
       <div className='w-full h-full bg-black/30' onClick={setIsNavOpen} />
       <nav
-        className={`bg-slate-50 w-[375px] h-full pt-20 px-2 pb-2 shadow-lg flex flex-col justify-evenly items-center`}
+        className={`bg-slate-50 !min-w-[300px] h-full pt-20 px-2 pb-2 shadow-lg flex flex-col justify-evenly items-center`}
       >
         <Link
           onClick={handleNavClose}

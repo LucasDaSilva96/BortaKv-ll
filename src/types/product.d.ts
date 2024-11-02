@@ -1,6 +1,6 @@
 import { Tag } from './tags';
 
-export type Product = {
+export interface Product {
   id: number;
   name: string;
   price: number;
@@ -12,4 +12,4 @@ export type Product = {
   stock_status: string;
   stock_quantity: number;
   tags: Tag[];
-};
+}
