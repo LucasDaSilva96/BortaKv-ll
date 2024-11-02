@@ -7,6 +7,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import RootLayout from './layouts/RootLayout.tsx';
+import Products from './pages/Products.tsx';
+import Product from './pages/Product.tsx';
+import Tag from './pages/Tag.tsx';
 
 // Router configuration
 const router = createBrowserRouter([
@@ -17,6 +20,18 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
+      },
+      {
+        path: 'products',
+        element: <Products />,
+      },
+      {
+        path: 'products/:id',
+        element: <Product />,
+      },
+      {
+        path: 'tag/:slug',
+        element: <Tag />,
       },
     ],
   },

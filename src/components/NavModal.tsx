@@ -10,7 +10,7 @@ export default function NavModal() {
       }`}
     >
       <div className='w-full h-full bg-black/30' onClick={setIsNavOpen} />
-      <nav className={`bg-slate-50 w-[370px] h-full pt-20 px-2 pb-2 shadow-lg`}>
+      <nav className={`bg-slate-50 w-[375px] h-full pt-20 px-2 pb-2 shadow-lg`}>
         NavModal
       </nav>
     </div>

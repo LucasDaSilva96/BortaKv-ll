@@ -1,13 +1,13 @@
 import ResponsivePlayer from '@/components/ResponsivePlayer';
 import VIDEO from '/videos/candy_video.mp4';
 import { useQuery } from '@tanstack/react-query';
-import { getProducts } from '@/services/products/products_get';
 import ProductsSwiper from '@/components/ProductsSwiper';
+import { getProductsByTag } from '@/services/tags/productsByTag_get';
 
 function HomePage() {
-  const { data: products, isLoading } = useQuery({
-    queryKey: ['products'],
-    queryFn: getProducts,
+  const { data, isLoading } = useQuery({
+    queryKey: ['tag', '124'],
+    queryFn: async () => await getProductsByTag('124'),
   });
 
   return (
@@ -18,10 +18,14 @@ function HomePage() {
       </div>
       {/*  */}
       <div className='py-4 px-10 space-y-12'>
-        <h1 className='text-4xl text-center py-3 capitalize font-semibold'>
+        <h1 className='text-4xl text-center py-3 capitalize font-bold'>
           treat yourself, you deserve it
         </h1>
-        {isLoading ? <p>Loading...</p> : <ProductsSwiper products={products} />}
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <ProductsSwiper products={data?.products} />
+        )}
       </div>
 
       <div className='w-full p-4 flex flex-col gap-4 md:flex-row justify-around max-w-[1200px] self-center items-center'>

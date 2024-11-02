@@ -2,6 +2,7 @@ import { Product } from '@/types/product';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay, Keyboard } from 'swiper/modules';
 import { Link } from 'react-router-dom';
+import TagsBox from './TagsBox';
 
 type ProductsSwiperProps = {
   products: Product[] | undefined;
@@ -26,10 +27,10 @@ export default function ProductsSwiper({ products }: ProductsSwiperProps) {
       {products.map((product) => (
         <SwiperSlide
           key={product.id}
-          className='border !w-[300px] rounded-md px-4'
+          className='border !w-[300px] rounded-md px-4 pb-2'
         >
           <img
-            src={`https://www.bortakvall.se/${product.images.thumbnail}`}
+            src={product.images.thumbnail}
             alt={product.name}
             className='w-auto max-h-[200px] self-center justify-self-center'
           />
@@ -48,6 +49,7 @@ export default function ProductsSwiper({ products }: ProductsSwiperProps) {
               View details
             </Link>
           </div>
+          <TagsBox tags={product.tags} />
         </SwiperSlide>
       ))}
     </Swiper>

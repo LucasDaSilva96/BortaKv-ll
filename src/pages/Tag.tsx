@@ -1,23 +1,27 @@
-import { getProducts } from '@/services/products/products_get';
-import { useQuery } from '@tanstack/react-query';
-import { Link } from 'react-router-dom';
 import TagsBox from '@/components/TagsBox';
+import { getProductsByTag } from '@/services/tags/productsByTag_get';
+import { useQuery } from '@tanstack/react-query';
+import { Link, useParams } from 'react-router-dom';
 
-export default function Products() {
-  const { data: products, isLoading } = useQuery({
-    queryKey: ['products'],
-    queryFn: getProducts,
+export default function Tag() {
+  const params = useParams<{ slug: string }>();
+
+  const { data, isLoading } = useQuery({
+    queryKey: ['tag', params.slug],
+    queryFn: async () => await getProductsByTag(params.slug),
   });
+
   return (
     <section className='w-full min-h-screen px-6 py-20 flex flex-col gap-20 overflow-x-hidden'>
       <h1 className='text-4xl text-center py-3 capitalize font-bold'>
-        All kind of candy
+        {data && data.name ? `${data.name} Candy` : <span>...</span>}
       </h1>
+
       {isLoading ? (
         <p className='animate-bounce'>Loading...</p>
       ) : (
         <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-          {products?.map((product) => (
+          {data?.products?.map((product) => (
             <article
               key={product.id}
               className='bg-white shadow-md rounded-md p-6 flex flex-col gap-4 transition-all will-change-auto lg:hover:shadow-lg min-w-[250px]'
