@@ -1,0 +1,6 @@
+[ ] - Create Zustand store to handle add to cart, increase, decrease and remove items
+[ ] - Create the form with validation when the user wants to checkout
+[ ] - Create the fake checkout page
+[ ] - Add animation to the project
+[ ] - Create the 404 - not found page
+[ ] - Create the error - handling page and apply to all fetch request
