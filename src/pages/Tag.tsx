@@ -1,14 +1,16 @@
+import ImageLoader from '@/components/ImageLoader';
 import TagsBox from '@/components/TagsBox';
 import { getProductsByTag } from '@/services/tags/productsByTag_get';
 import { useQuery } from '@tanstack/react-query';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link, useParams } from 'react-router-dom';
 
 export default function Tag() {
-  const params = useParams<{ slug: string }>();
+  const params = useParams<{ id: string }>();
 
   const { data, isLoading } = useQuery({
-    queryKey: ['tag', params.slug],
-    queryFn: async () => await getProductsByTag(params.slug),
+    queryKey: ['tag', params.id],
+    queryFn: async () => await getProductsByTag(params.id),
   });
 
   return (
@@ -24,11 +26,13 @@ export default function Tag() {
           {data?.products?.map((product) => (
             <article
               key={product.id}
-              className='bg-white shadow-md rounded-md p-6 flex flex-col gap-4 transition-all will-change-auto lg:hover:shadow-lg min-w-[250px]'
+              className='bg-white shadow-md rounded-md p-6 flex flex-col gap-4 transition-all will-change-auto lg:hover:shadow-lg min-w-[250px] relative'
             >
-              <img
+              <LazyLoadImage
                 src={product.images.thumbnail}
                 alt={product.name}
+                effect='blur'
+                placeholder={<ImageLoader />}
                 className='w-full h-auto rounded-md'
               />
               <h2 className='text-xl font-semibold'>{product.name}</h2>

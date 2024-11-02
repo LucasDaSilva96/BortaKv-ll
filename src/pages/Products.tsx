@@ -2,6 +2,8 @@ import { getProducts } from '@/services/products/products_get';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import TagsBox from '@/components/TagsBox';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import ImageLoader from '@/components/ImageLoader';
 
 export default function Products() {
   const { data: products, isLoading } = useQuery({
@@ -20,16 +22,18 @@ export default function Products() {
           {products?.map((product) => (
             <article
               key={product.id}
-              className='bg-white shadow-md rounded-md p-6 flex flex-col gap-4 transition-all will-change-auto lg:hover:shadow-lg min-w-[250px]'
+              className='bg-white shadow-md rounded-md p-6 flex flex-col gap-4 transition-all will-change-auto lg:hover:shadow-lg min-w-[250px] relative'
             >
-              <img
+              <LazyLoadImage
                 src={product.images.thumbnail}
                 alt={product.name}
+                effect='blur'
+                placeholder={<ImageLoader />}
                 className='w-full h-auto rounded-md'
               />
+
               <h2 className='text-xl font-semibold'>{product.name}</h2>
               <p className='text-lg font-semibold'>{product.price} kr</p>
-
               <div className='w-full flex items-center justify-between py-2'>
                 <button className='bg-primary text-white px-4 py-2 rounded-md'>
                   Add to cart
@@ -41,7 +45,6 @@ export default function Products() {
                   View details
                 </Link>
               </div>
-
               <TagsBox tags={product.tags} />
             </article>
           ))}

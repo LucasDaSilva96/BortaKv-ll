@@ -43,7 +43,7 @@ export default function ProductsSwiper({ products }: ProductsSwiperProps) {
               Add to cart
             </button>
             <Link
-              to={`/products/${product.id}`}
+              to={`/product/${product.id}`}
               className='text-primary underline'
             >
               View details

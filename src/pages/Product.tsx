@@ -1,3 +1,48 @@
+import TagsBox from '@/components/TagsBox';
+import { getProductById } from '@/services/products/products_get';
+import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import ImageLoader from '@/components/ImageLoader';
+
 export default function Product() {
-  return <div>Product</div>;
+  const params = useParams<{ id: string }>();
+
+  const { data, isLoading } = useQuery({
+    queryKey: ['product', params.id],
+    queryFn: async () => await getProductById(params.id),
+  });
+
+  if (!data) return <p>Product not found</p>;
+
+  return (
+    <section className='w-full min-h-screen px-6 pt-40 pb-20 flex flex-col items-center gap-3'>
+      <h1 className='text-4xl text-center py-3 capitalize font-bold'>
+        {data && data.name ? data.name : 'Product'}
+      </h1>
+      {isLoading ? (
+        <p className='animate-bounce'>Loading...</p>
+      ) : (
+        <article className='bg-white shadow-md rounded-md p-6 flex flex-col gap-4 transition-all will-change-auto lg:hover:shadow-lg min-w-[250px] max-w-[600px] relative'>
+          <LazyLoadImage
+            src={data.images.large}
+            alt={data.name}
+            effect='blur'
+            placeholder={<ImageLoader />}
+            className='w-full h-auto rounded-md'
+          />
+          <h2 className='text-xl font-semibold'>{data?.name}</h2>
+          <p className='text-lg font-semibold'>{data?.price} kr</p>
+
+          <div className='w-full flex items-center justify-between py-2'>
+            <button className='bg-primary text-white px-4 py-2 rounded-md'>
+              Add to cart
+            </button>
+          </div>
+
+          <TagsBox tags={data.tags} />
+        </article>
+      )}
+    </section>
+  );
 }

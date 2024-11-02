@@ -1,5 +1,6 @@
 import './index.css';
 import 'swiper/swiper-bundle.css';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import HomePage from './pages/Home.tsx';
@@ -26,11 +27,11 @@ const router = createBrowserRouter([
         element: <Products />,
       },
       {
-        path: 'products/:id',
+        path: 'product/:id',
         element: <Product />,
       },
       {
-        path: 'tag/:slug',
+        path: 'tag/:id',
         element: <Tag />,
       },
     ],

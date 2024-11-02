@@ -14,3 +14,18 @@ export const getProducts = async () => {
   });
   return response.data.data;
 };
+
+// Get a single product by its ID from the API, adjust the image URLs
+export const getProductById = async (id: string | undefined) => {
+  if (!id) return;
+
+  const response = await axios.get<{ data: Product }>(
+    BASE_URL + '/products/' + id
+  );
+
+  const product = response.data.data;
+  product.images.thumbnail = `https://www.bortakvall.se/${product.images.thumbnail}`;
+
+  product.images.large = `https://www.bortakvall.se/${product.images.large}`;
+  return product;
+};

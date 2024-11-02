@@ -9,7 +9,7 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       if (!headerRef.current) return;
-      if (window.scrollY > 200) {
+      if (window.scrollY > 100) {
         headerRef.current.classList.add('bg-slate-50', 'backdrop-blur-md');
       } else {
         headerRef.current.classList.remove('bg-slate-50', 'backdrop-blur-md');
