@@ -1,3 +1,5 @@
+#Todo - List
+
 - [ ] - Create Zustand store to handle add to cart, increase, decrease and remove items
 - [ ] - Create the form with validation when the user wants to checkout-
 - [ ] - Create the fake checkout page
