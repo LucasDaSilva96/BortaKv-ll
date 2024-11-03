@@ -6,7 +6,6 @@ import { createRoot } from 'react-dom/client';
 import HomePage from './pages/Home.tsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import RootLayout from './layouts/RootLayout.tsx';
 import Products from './pages/Products.tsx';
 import Product from './pages/Product.tsx';
@@ -15,6 +14,7 @@ import { Toaster } from 'react-hot-toast';
 import { IoWarningOutline } from 'react-icons/io5';
 import { MdDone } from 'react-icons/md';
 import NotFoundPage from './pages/404-not-found.tsx';
+import Checkout from './pages/Checkout.tsx';
 
 // Router configuration
 const router = createBrowserRouter([
@@ -37,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: 'tag/:id',
         element: <Tag />,
+      },
+      {
+        path: 'checkout',
+        element: <Checkout />,
       },
       {
         path: '*',
@@ -74,7 +78,6 @@ createRoot(document.getElementById('root')!).render(
           },
         }}
       />
-      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </StrictMode>
 );

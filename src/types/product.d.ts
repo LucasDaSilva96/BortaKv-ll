@@ -13,3 +13,7 @@ export interface Product {
   stock_quantity: number;
   tags: Tag[];
 }
+
+export interface ProductDetail extends Product {
+  description: string;
+}

@@ -4,7 +4,7 @@ import { CartProduct, useCart } from '@/stores/cart';
 import { CiCircleMinus, CiCirclePlus, CiCircleRemove } from 'react-icons/ci';
 import toast from 'react-hot-toast';
 
-type CartItemBoxProps = {
+export type CartItemBoxProps = {
   product: CartProduct;
 };
 
@@ -30,7 +30,9 @@ export default function CartItemBox({ product }: CartItemBoxProps) {
 
   return (
     <div className='w-full flex flex-col items-center gap-2 relative border p-2'>
-      <h2 className='text-lg font-semibold'>{product.name}</h2>
+      <h2 className='text-lg font-semibold'>
+        {product.name} - {product.price}kr
+      </h2>
       <LazyLoadImage
         src={product.images.thumbnail}
         alt={product.name}

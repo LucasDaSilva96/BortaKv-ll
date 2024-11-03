@@ -55,6 +55,7 @@ export default function CartModal() {
             </button>
 
             <Link
+              onClick={setIsCartOpen}
               to='/checkout'
               className='bg-primary text-white p-2 rounded-md text-center'
             >

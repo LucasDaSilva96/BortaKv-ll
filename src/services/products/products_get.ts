@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BASE_URL } from '../api_resources';
-import { Product } from '@/types/product';
+import { Product, ProductDetail } from '@/types/product';
 import { catchError } from '../catchError';
 import toast from 'react-hot-toast';
 
@@ -28,7 +28,7 @@ export const getProductById = async (id: string | undefined) => {
   if (!id) return;
 
   try {
-    const response = await axios.get<{ data: Product }>(
+    const response = await axios.get<{ data: ProductDetail }>(
       BASE_URL + '/products/' + id
     );
 
