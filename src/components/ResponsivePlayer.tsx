@@ -4,6 +4,7 @@ export default function ResponsivePlayer({ url }: { url: string }) {
   return (
     <div className='player-wrapper'>
       <ReactPlayer
+        playsinline
         className='react-player'
         config={{
           file: {

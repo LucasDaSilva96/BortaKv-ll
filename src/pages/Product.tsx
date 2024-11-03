@@ -18,12 +18,14 @@ export default function Product() {
   if (!data) return <p>Product not found</p>;
 
   return (
-    <section className='w-full min-h-svh px-6 pt-40 pb-20 flex flex-col items-center gap-3'>
+    <section className='w-full min-h-svh px-6 pt-6 lg:pt-40 pb-20 flex flex-col items-center gap-3'>
       <h1 className='text-4xl text-center py-3 capitalize font-bold'>
         {data && data.name ? data.name : 'Product'}
       </h1>
       {isLoading ? (
-        <p className='animate-bounce'>Loading...</p>
+        <div className='w-full min-h-svh flex items-center justify-center'>
+          <p className='animate-bounce'>Loading...</p>
+        </div>
       ) : (
         <article className='bg-white shadow-md rounded-md p-6 flex flex-col gap-4 transition-all will-change-auto lg:hover:shadow-lg min-w-[250px] max-w-[600px] relative'>
           <SoldOutLabel

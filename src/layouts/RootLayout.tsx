@@ -1,4 +1,5 @@
 import BigLoader from '@/components/BigLoader';
+import BreadCrumb from '@/components/BreadCrumb';
 import CartModal from '@/components/CartModal';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
@@ -25,6 +26,7 @@ export default function RootLayout() {
   return (
     <main>
       <Header />
+      <BreadCrumb />
       <Outlet />
       <NavModal />
       <CartModal />

@@ -18,8 +18,6 @@ export default function AddToCartBtn({
       toast.error('Max stock quantity reached');
       return;
     }
-
-    toast.success(`Added ${product.name} to cart`);
     addToCart(product);
   };
 

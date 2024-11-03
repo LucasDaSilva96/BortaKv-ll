@@ -15,6 +15,7 @@ import { IoWarningOutline } from 'react-icons/io5';
 import { MdDone } from 'react-icons/md';
 import NotFoundPage from './pages/404-not-found.tsx';
 import Checkout from './pages/Checkout.tsx';
+import Confirmation from './pages/Confirmation.tsx';
 
 // Router configuration
 const router = createBrowserRouter([
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: 'checkout',
         element: <Checkout />,
+      },
+      {
+        path: 'confirmation/:id',
+        element: <Confirmation />,
       },
       {
         path: '*',

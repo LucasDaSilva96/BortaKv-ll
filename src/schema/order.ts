@@ -9,23 +9,12 @@ export const formSchema = z.object({
   customer_email: z.string().email(),
   customer_phone: z.string().optional(),
   order_total: z.number().min(0),
-  order_items: z.object({
-    cart: z.array(
-      z.object({
-        id: z.number(),
-        name: z.string(),
-        price: z.number(),
-        on_sale: z.boolean(),
-        images: z.object({
-          thumbnail: z.string(),
-          large: z.string(),
-        }),
-        stock_status: z.string(),
-        stock_quantity: z.number(),
-        tags: z.array(
-          z.object({ id: z.number(), name: z.string(), slug: z.string() })
-        ),
-      })
-    ),
-  }),
+  order_items: z.array(
+    z.object({
+      product_id: z.number(),
+      qty: z.number(),
+      item_price: z.number(),
+      item_total: z.number(),
+    })
+  ),
 });

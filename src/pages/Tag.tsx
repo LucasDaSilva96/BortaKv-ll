@@ -16,7 +16,7 @@ export default function Tag() {
   });
 
   return (
-    <section className='w-full min-h-screen px-6 py-20 flex flex-col gap-20 overflow-x-hidden'>
+    <section className='w-full min-h-screen px-6 pt-6 lg:pt-40 flex flex-col gap-20 overflow-x-hidden'>
       <h1 className='text-4xl text-center py-3 capitalize font-bold'>
         {data && data.name ? `${data.name} Candy` : <span>...</span>}
       </h1>

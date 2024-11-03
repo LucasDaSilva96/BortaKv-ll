@@ -10,15 +10,18 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { formSchema } from '@/schema/order';
+import { formatOrder } from '@/services/orders/formatOrder';
+import { createOrder } from '@/services/orders/order_post';
 import { useCart } from '@/stores/cart';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 
 export default function Checkout() {
   const { cart, total_amount } = useCart();
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -39,16 +42,22 @@ export default function Checkout() {
       customer_email: '',
       customer_phone: '',
       order_total: total_amount,
-      order_items: {
-        cart: cart,
-      },
+      order_items: formatOrder(cart),
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      setIsLoading(true);
+      const response = await createOrder(values);
+      if (response) {
+        navigate(`/confirmation/${response.id}`);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   }
   return (
     <section className='w-full pt-32 lg:pt-20 pb-4 px-4 flex flex-col items-center gap-2 min-h-svh'>
@@ -216,10 +225,11 @@ export default function Checkout() {
             />
           </div>
           <button
+            disabled={isLoading}
             className='w-full bg-black text-slate-50 p-2 rounded-md font-semibold uppercase'
             type='submit'
           >
-            Place Order - {total_amount}kr
+            {isLoading ? 'Loading...' : `Place Order - ${total_amount}kr`}
           </button>
         </form>
       </Form>

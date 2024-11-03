@@ -13,7 +13,7 @@ export default function Products() {
     queryFn: getProducts,
   });
   return (
-    <section className='w-full min-h-screen px-6 py-20 flex flex-col gap-20 overflow-x-hidden'>
+    <section className='w-full min-h-screen px-6 pt-6 lg:pt-40 flex flex-col gap-20 overflow-x-hidden'>
       <h1 className='text-4xl text-center py-3 capitalize font-bold'>
         All kind of candy
       </h1>
