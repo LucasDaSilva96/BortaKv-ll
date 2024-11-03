@@ -14,6 +14,7 @@ import Tag from './pages/Tag.tsx';
 import { Toaster } from 'react-hot-toast';
 import { IoWarningOutline } from 'react-icons/io5';
 import { MdDone } from 'react-icons/md';
+import NotFoundPage from './pages/404-not-found.tsx';
 
 // Router configuration
 const router = createBrowserRouter([
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: 'tag/:id',
         element: <Tag />,
+      },
+      {
+        path: '*',
+        element: <NotFoundPage />,
       },
     ],
   },

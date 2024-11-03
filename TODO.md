@@ -4,5 +4,5 @@
 - [ ] - Create the form with validation when the user wants to checkout-
 - [ ] - Create the fake checkout page
 - [ ] - Add animation to the project
-- [ ] - Create the 404 - not found page
-- [ ] - Create the error - handling page and apply to all fetch request
+- [x] - Create the 404 - not found page
+- [ ] - Create the error - handling and apply to all fetch request
