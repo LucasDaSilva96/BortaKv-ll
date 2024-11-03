@@ -1,3 +1,4 @@
+import { getCart, saveCart } from '@/services/localStorage';
 import { Product } from '@/types/product';
 import { create } from 'zustand';
 
@@ -5,7 +6,7 @@ export interface CartProduct extends Product {
   amount: number;
 }
 
-interface State {
+export interface CartState {
   cart: CartProduct[];
   total_amount: number;
   total_items: number;
@@ -20,10 +21,10 @@ type Action = {
   clearCart: () => void;
 };
 
-export const useCart = create<State & Action>((set) => ({
-  cart: [],
-  total_amount: 0,
-  total_items: 0,
+export const useCart = create<CartState & Action>((set) => ({
+  cart: getCart().cart,
+  total_amount: getCart().total_amount,
+  total_items: getCart().total_items,
   addToCart: (product) => {
     set((state) => {
       const tempCart = [...state.cart];
@@ -38,6 +39,11 @@ export const useCart = create<State & Action>((set) => ({
         state.total_amount += newItem.price;
         state.total_items += 1;
       }
+      saveCart({
+        cart: tempCart,
+        total_amount: state.total_amount,
+        total_items: state.total_items,
+      });
       return {
         ...state,
         cart: tempCart,
@@ -47,15 +53,26 @@ export const useCart = create<State & Action>((set) => ({
   removeFromCart: (id) => {
     set((state) => {
       const tempItems = state.cart.filter((item) => item.id !== id);
+
+      const total_amount = tempItems.reduce((acc, item) => {
+        return acc + item.price * item.amount;
+      }, 0);
+
+      const total_items = tempItems.reduce((acc, item) => {
+        return acc + item.amount;
+      }, 0);
+
+      saveCart({
+        cart: tempItems,
+        total_amount,
+        total_items,
+      });
+
       return {
         ...state,
         cart: tempItems,
-        total_amount: tempItems.reduce((acc, item) => {
-          return acc + item.price * item.amount;
-        }, 0),
-        total_items: tempItems.reduce((acc, item) => {
-          return acc + item.amount;
-        }, 0),
+        total_amount,
+        total_items,
       };
     });
   },
@@ -69,6 +86,13 @@ export const useCart = create<State & Action>((set) => ({
         }
         return item;
       });
+
+      saveCart({
+        cart: tempCart,
+        total_amount: state.total_amount,
+        total_items: state.total_items,
+      });
+
       return {
         ...state,
         cart: tempCart,
@@ -88,6 +112,12 @@ export const useCart = create<State & Action>((set) => ({
         })
         .filter((item) => item.amount !== 0);
 
+      saveCart({
+        cart: tempCart,
+        total_amount: tempCart.length > 0 ? state.total_amount : 0,
+        total_items: tempCart.length > 0 ? state.total_items : 0,
+      });
+
       return {
         ...state,
         cart: tempCart,
@@ -104,6 +134,12 @@ export const useCart = create<State & Action>((set) => ({
         total_amount: 0,
         total_items: 0,
       };
+    });
+
+    saveCart({
+      cart: [],
+      total_amount: 0,
+      total_items: 0,
     });
   },
   getItemQuantity: (id): number => {
