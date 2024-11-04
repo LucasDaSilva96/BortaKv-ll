@@ -23,7 +23,7 @@ export default function CartModal() {
       <div
         className={`bg-slate-50 !min-w-[300px] h-screen overflow-x-hidden pt-20 px-2 pb-2 shadow-lg flex flex-col gap-4`}
       >
-        <div className='w-full h-[55dvh] overflow-y-auto flex flex-col gap-2'>
+        <div className='w-full h-[80%] overflow-y-auto flex flex-col gap-2'>
           {cart.length > 0 ? (
             cart.map((product) => (
               <CartItemBox key={product.id} product={product} />
