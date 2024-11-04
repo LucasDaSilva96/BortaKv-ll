@@ -74,20 +74,6 @@ After an order is placed, the cart should be emptied of products.
 
 The cart and customer information (if available from previous orders) should also be saved in Local Storage to survive page reloads.
 
-### API
-
-- Base URL: `https://www.bortakvall.se/api/v2`
-- Register for a userId: `https://www.bortakvall.se/register`
-- Login to view orders: `https://www.bortakvall.se/login`
-
-#### Endpoints
-
-- `GET /products`: Lists all products without descriptions.
-- `GET /products/:productId`: Lists a single product.
-- `GET /tags`: Lists all tags.
-- `GET /tags/:tagId`: Lists all products with the tag `tagId`.
-- `POST /users/:userId/orders`: Place an order.
-
 ### Validation
 
 - `customer_first_name`: string, max 255 characters
@@ -103,15 +89,6 @@ The cart and customer information (if available from previous orders) should als
   - `qty`: must be a positive integer
   - `item_price`: must match `product_id`
   - `item_total`: must be `qty` multiplied by `item_price`
-
-### Submission
-
-- Deadline: Sunday, November 10, 23:59
-- Accept GitHub Classroom invitation: [GitHub Classroom Invitation](https://classroom.github.com/a/EwFqlkmk)
-- Submit:
-  - Link to your GitHub Classroom repo
-  - Whether you did the passing or distinction level
-  - Any known bugs or comments that might be useful for the review
 
 ### Grading Criteria
 
