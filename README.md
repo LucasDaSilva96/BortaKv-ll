@@ -2,6 +2,7 @@
 
 BortaKväll is an e-commerce platform dedicated to bringing more candy to the people. Our mission is to provide a delightful and seamless shopping experience for candy lovers everywhere.
 
+💻[Live Demo](https://borta-kv-ll.vercel.app/)
 ![Preview image](/public/images/Bortkvall.png)
 
 ## Assignment Description
