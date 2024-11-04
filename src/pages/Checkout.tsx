@@ -18,6 +18,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
+import { motion } from 'framer-motion';
 
 export default function Checkout() {
   const { cart, total_amount } = useCart();
@@ -224,13 +225,14 @@ export default function Checkout() {
               )}
             />
           </div>
-          <button
+          <motion.button
+            whileTap={{ scale: 0.9 }}
             disabled={isLoading}
             className='w-full bg-black text-slate-50 p-2 rounded-md font-semibold uppercase'
             type='submit'
           >
             {isLoading ? 'Loading...' : `Place Order - ${total_amount}kr`}
-          </button>
+          </motion.button>
         </form>
       </Form>
     </section>

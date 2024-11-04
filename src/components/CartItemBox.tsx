@@ -2,6 +2,7 @@ import ImageLoader from './ImageLoader';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { CartProduct, useCart } from '@/stores/cart';
 import { CiCircleMinus, CiCirclePlus, CiCircleRemove } from 'react-icons/ci';
+import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
 
 export type CartItemBoxProps = {
@@ -41,23 +42,24 @@ export default function CartItemBox({ product }: CartItemBoxProps) {
         className='w-auto h-[80px]'
       />
       <div className='w-full flex items-center justify-evenly'>
-        <button onClick={handleDecreaseAmount}>
+        <motion.button whileTap={{ scale: 0.9 }} onClick={handleDecreaseAmount}>
           <CiCircleMinus size={28} />
-        </button>
+        </motion.button>
         <div className='border py-1 px-4 rounded-md'>
           <span className='font-bold'>{getItemQuantity(product.id)}</span>
         </div>
-        <button onClick={handleIncreaseAmount}>
+        <motion.button whileTap={{ scale: 0.9 }} onClick={handleIncreaseAmount}>
           <CiCirclePlus size={28} />
-        </button>
+        </motion.button>
       </div>
-      <button
+      <motion.button
+        whileTap={{ scale: 0.9 }}
         onClick={handleRemoveFromCart}
         className='flex items-center gap-2 bg-red-600 text-white px-2 py-0.5 rounded-md mt-2'
       >
         <span className='text-lg'>Remove</span>
         <CiCircleRemove size={24} />
-      </button>
+      </motion.button>
     </div>
   );
 }

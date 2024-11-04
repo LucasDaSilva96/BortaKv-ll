@@ -1,5 +1,6 @@
 import { useCart } from '@/stores/cart';
 import { Product } from '@/types/product';
+import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
 
 type AddToCartBtnProps = {
@@ -22,8 +23,12 @@ export default function AddToCartBtn({
   };
 
   return (
-    <button onClick={handleAddToCart} className={customClassName}>
+    <motion.button
+      whileTap={{ scale: 0.9 }}
+      onClick={handleAddToCart}
+      className={customClassName}
+    >
       ADD TO CART
-    </button>
+    </motion.button>
   );
 }

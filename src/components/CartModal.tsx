@@ -2,6 +2,7 @@ import { useCart } from '@/stores/cart';
 import { useModalsToggle } from '@/stores/modalToggle';
 import CartItemBox from './CartItemBox';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export default function CartModal() {
   const { setIsCartOpen, isCartOpen } = useModalsToggle();
@@ -47,12 +48,13 @@ export default function CartModal() {
               </div>
             </div>
 
-            <button
+            <motion.button
+              whileTap={{ scale: 0.9 }}
               onClick={handleClearCart}
               className='bg-red-600 text-slate-50 p-2 rounded-md font-semibold'
             >
               Clear cart
-            </button>
+            </motion.button>
 
             <Link
               onClick={setIsCartOpen}

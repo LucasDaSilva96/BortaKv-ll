@@ -6,6 +6,7 @@ import { Order_Item } from '@/types/order';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export default function Confirmation() {
   const { id } = useParams<{ id: string }>();
@@ -69,13 +70,14 @@ export default function Confirmation() {
       <p className='text-lg'>
         <strong>Order items:</strong> {formatItemsQuantity(order.items)}
       </p>
-      <button
+      <motion.button
+        whileTap={{ scale: 0.9 }}
         onClick={() => navigate('/')}
         className='bg-black text-slate-50 py-1 px-4 rounded-md font-semibold mt-4'
         type='button'
       >
         Go back home
-      </button>
+      </motion.button>
       <ConfettiParticles />
     </section>
   );

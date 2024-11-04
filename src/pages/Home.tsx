@@ -84,9 +84,12 @@ function HomePage() {
             Find the closest <span className='text-blue-400'>shop</span>
           </h2>
 
-          <button className='bg-pink text-white px-4 py-2 rounded-md min-w-[200px] font-semibold'>
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+            className='bg-pink text-white px-4 py-2 rounded-md min-w-[200px] font-semibold'
+          >
             Find now
-          </button>
+          </motion.button>
         </motion.article>
       </motion.div>
 
@@ -112,9 +115,12 @@ function HomePage() {
             It is both easy and fun to earn money for the class or association
             by selling tasty products.
           </p>
-          <button className='bg-pink text-white px-4 py-2 rounded-md font-semibold'>
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+            className='bg-pink text-white px-4 py-2 rounded-md font-semibold'
+          >
             I wanna know more
-          </button>
+          </motion.button>
         </motion.article>
 
         <motion.img

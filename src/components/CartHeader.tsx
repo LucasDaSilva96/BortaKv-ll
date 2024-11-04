@@ -1,6 +1,7 @@
 import { useCart } from '@/stores/cart';
 import { useModalsToggle } from '@/stores/modalToggle';
 import { MdOutlineShoppingBag, MdShoppingBag } from 'react-icons/md';
+import { motion } from 'framer-motion';
 
 export default function CartHeader() {
   const { cart, total_items } = useCart();
@@ -13,7 +14,8 @@ export default function CartHeader() {
 
   return (
     <div>
-      <button
+      <motion.button
+        whileTap={{ scale: 0.8 }}
         onClick={handleToggle}
         className='text-black cursor-pointer active:text-black/50'
       >
@@ -27,7 +29,7 @@ export default function CartHeader() {
         ) : (
           <MdOutlineShoppingBag size={28} />
         )}
-      </button>
+      </motion.button>
     </div>
   );
 }

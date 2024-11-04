@@ -3,6 +3,7 @@ import { Pagination } from 'swiper/modules';
 import { CartProduct, useCart } from '@/stores/cart';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { CiCircleMinus, CiCirclePlus, CiCircleRemove } from 'react-icons/ci';
+import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
 
 type CheckoutSwiperProps = {
@@ -58,25 +59,32 @@ export default function CheckoutSwiper({ cart }: CheckoutSwiperProps) {
 
             <div className='flex flex-col items-center self-center'>
               <div className='w-full flex items-center gap-3'>
-                <button onClick={() => handleDecreaseAmount(product)}>
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => handleDecreaseAmount(product)}
+                >
                   <CiCircleMinus size={28} />
-                </button>
+                </motion.button>
                 <div className='border py-1 px-4 rounded-md bg-slate-50'>
                   <span className='font-bold'>
                     {getItemQuantity(product.id)}
                   </span>
                 </div>
-                <button onClick={() => handleIncreaseAmount(product)}>
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => handleIncreaseAmount(product)}
+                >
                   <CiCirclePlus size={28} />
-                </button>
+                </motion.button>
               </div>
-              <button
+              <motion.button
+                whileTap={{ scale: 0.9 }}
                 onClick={() => handleRemoveFromCart(product)}
                 className='flex items-center gap-2 bg-red-600 text-white px-2 py-0.5 rounded-md mt-2'
               >
                 <span className='text-lg'>Remove</span>
                 <CiCircleRemove size={24} />
-              </button>
+              </motion.button>
             </div>
           </div>
         </SwiperSlide>

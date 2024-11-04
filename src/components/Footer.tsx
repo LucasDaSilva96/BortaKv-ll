@@ -4,6 +4,8 @@ import {
   FaTiktok,
   FaFacebookF,
   FaLinkedinIn,
+  FaGithubSquare,
+  FaLinkedin,
 } from 'react-icons/fa';
 
 export default function Footer() {
@@ -89,6 +91,39 @@ export default function Footer() {
         <p className='text-center'>
           BortaKväll is a registered trademark of BortaKväll AB.
         </p>
+      </div>
+      <div className='w-[300px] flex items-center justify-evenly'>
+        <p>
+          Creator:{' '}
+          <a
+            href='https://github.com/LucasDaSilva96'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='font-bold text-blue-500 lg:hover:text-blue-400'
+          >
+            Lucas Da Silva
+          </a>
+        </p>
+        <a
+          href='https://github.com/LucasDaSilva96'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          <FaGithubSquare
+            size={28}
+            className='text-white active:text-blue-500 lg:hover:text-blue-500 transition-all will-change-auto'
+          />
+        </a>
+        <a
+          href='https://www.linkedin.com/in/lucas-da-silva-9955911a0/'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          <FaLinkedin
+            size={28}
+            className='text-white active:text-blue-500 lg:hover:text-blue-500 transition-all will-change-auto'
+          />
+        </a>
       </div>
     </footer>
   );

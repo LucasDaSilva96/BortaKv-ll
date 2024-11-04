@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { FaAngleDoubleUp } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 export default function ScrollBackUp() {
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -26,12 +27,21 @@ export default function ScrollBackUp() {
   };
 
   return (
-    <button
+    <motion.button
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{
+        duration: 0.5,
+        type: 'spring',
+        stiffness: 260,
+        damping: 20,
+      }}
+      whileTap={{ scale: 0.8 }}
       ref={buttonRef}
       className='p-3 rounded-full fixed right-4 bottom-4 z-40 bg-pink hidden'
       onClick={handleClick}
     >
       <FaAngleDoubleUp size={28} className='text-white' />
-    </button>
+    </motion.button>
   );
 }
