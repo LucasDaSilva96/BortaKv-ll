@@ -47,13 +47,6 @@ Efter att en beställning gått igenom ska varukorgen tömmas på produkter.
 
 Varukorgen och kundinformation (om det finns sedan tidigare beställningar) ska även sparas i Local Storage så det överlever omladdning av sidan.
 
-## API
-
-[https://www.bortakvall.se/api/v2](https://www.bortakvall.se/api/v2)
-
-Du registrerar ett konto på [https://www.bortakvall.se/register](https://www.bortakvall.se/register) för att få ett userId som ni sen använder i URL:en när ni skickar in en order.
-
-Med kontot kan du även logga in på [https://www.bortakvall.se/login](https://www.bortakvall.se/login) och se alla era inskickade ordrar.
 
 ### Endpoints
 
